@@ -21,16 +21,15 @@ while True:
 def start():
     print 'Type \'help\' to view commands'
 
+    print "Enter Command: "
     while True:
 
         # receive commands
         command = raw_input('Please enter command: ')
 
         # TODO: implement arrow key directions, get search working
-        if command == 'home':
-            home()
-        # elif command == 'search':
-        #     search()
+        if command == 'h':
+            roku.home()
         elif command == 'r':
             roku.right()
         elif command == 'l':
@@ -59,7 +58,6 @@ def help():
     print '\nCommands:'
     print '----------------------------'
     print 'h: go to home screen'
-    # print 'search: search for title'
     print 'r: right'
     print 'l: left'
     print 'u: up'
