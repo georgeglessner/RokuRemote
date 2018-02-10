@@ -6,12 +6,16 @@ from roku import Roku
 from ip import *
 import sys
 
+import signal
+
 while True:
     location = raw_input('Upstairs/Downostairs? [u/d]: ')
 
+    # upstairs roku
     if location == 'u':
         roku = Roku(upstairs)
         break
+    # downstairs roku
     if location == 'd':
         roku = Roku(downstairs)
         break
@@ -21,7 +25,6 @@ while True:
 def start():
     print 'Type \'help\' to view commands'
 
-    print "Enter Command: "
     while True:
 
         # receive commands
@@ -29,6 +32,7 @@ def start():
 
         # TODO: implement arrow key directions, get search working
         if command == 'h':
+            print 'home'
             roku.home()
         elif command == 'r':
             roku.right()
@@ -45,10 +49,12 @@ def start():
         elif command == 'p':
             roku.play()
         elif command == 'n':
-            roku.netflix()
+            netflix = roku['Netflix']
+            netflix.launch()
         elif command == 'help':
             help()
         elif command == 'exit':
+            print '\nRemote off\n'
             sys.exit(1)
         else:
             print 'Invalid command. Type \'help\' to view list of commands.'
@@ -69,6 +75,11 @@ def help():
     print 'exit: exit remote'
     print '----------------------------'
 
+def sigint_handler(signum, frame):
+    print '\n\nRemote off\n'
+    sys.exit(1)
+
+signal.signal(signal.SIGINT, sigint_handler)
 
 if __name__ == '__main__':
     start()
