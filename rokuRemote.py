@@ -47,9 +47,6 @@ class Application(Frame):
     def select(self):
         roku.select()
 
-    def play(self):
-        roku.play()
-
     def netflix(self):
         netflix = roku['Netflix']
         netflix.launch()
@@ -73,13 +70,13 @@ class Application(Frame):
             Image.open('buttons/up_button.png'))
         self.down_button = ImageTk.PhotoImage(
             Image.open('buttons/down_button.png'))
-        self.play_button = ImageTk.PhotoImage(
-            Image.open('buttons/play_button.png'))
-        self.pause_button = ImageTk.PhotoImage(
-            Image.open('buttons/pause_button.png'))
         netflix_button = Image.open('buttons/netflix_button.jpeg')
         netflix_button = netflix_button.resize((100, 50), Image.ANTIALIAS)
         self.netflix_button = ImageTk.PhotoImage(netflix_button)
+        play_pause_button = Image.open('buttons/play_pause_button.png')
+        play_pause_button = play_pause_button.resize(
+            (100, 100), Image.ANTIALIAS)
+        self.play_pause_button = ImageTk.PhotoImage(play_pause_button)
 
         # create buttons
         self.HOME = Button(self)
@@ -105,9 +102,6 @@ class Application(Frame):
 
         self.SELECT = Button(self)
         self.SELECT['command'] = self.select
-
-        self.PAUSE = Button(self)
-        self.PAUSE['command'] = self.select
 
         # back button
         self.BACK.config(image=self.back_button, width='50', height='50')
@@ -138,13 +132,10 @@ class Application(Frame):
         self.DOWN.config(image=self.down_button, width='100', height='100')
         self.DOWN.pack(side='bottom', expand=True)
 
-        # play button
-        self.SELECT.config(image=self.play_button, width='50', height='50')
+        # select/play/pause button
+        self.SELECT.config(image=self.play_pause_button,
+                           width='100', height='100')
         self.SELECT.pack(side='left', expand=True)
-
-        # pause button
-        self.PAUSE.config(image=self.pause_button, width='50', height='50')
-        self.PAUSE.pack(side='right', expand=True)
 
     def __init__(self, master=None):
         Frame.__init__(self, master)
@@ -155,7 +146,7 @@ class Application(Frame):
 root = Tk()
 root.title('Roku Remote')
 root.geometry('350x450')
-root.resizable(False,False)
+root.resizable(False, False)
 app = Application(master=root)
 app.mainloop()
 try:
