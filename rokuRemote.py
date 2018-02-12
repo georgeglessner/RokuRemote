@@ -3,7 +3,8 @@
 ''' Roku remote application '''
 
 from Tkinter import *
-from ip import *
+from ip_addresses import upstairs
+from ip_addresses import downstairs
 from roku import Roku
 from PIL import ImageTk
 from PIL import Image
@@ -59,24 +60,32 @@ class Application(Frame):
         back_button = Image.open('buttons/back_button.png')
         back_button = back_button.resize((50, 50), Image.ANTIALIAS)
         self.back_button = ImageTk.PhotoImage(back_button)
+
         home_button = Image.open('buttons/home_button.png')
         home_button = home_button.resize((50, 50), Image.ANTIALIAS)
         self.home_button = ImageTk.PhotoImage(home_button)
-        self.left_button = ImageTk.PhotoImage(
-            Image.open('buttons/left_button.png'))
-        self.right_button = ImageTk.PhotoImage(
-            Image.open('buttons/right_button.png'))
-        self.up_button = ImageTk.PhotoImage(
-            Image.open('buttons/up_button.png'))
-        self.down_button = ImageTk.PhotoImage(
-            Image.open('buttons/down_button.png'))
+
         netflix_button = Image.open('buttons/netflix_button.jpeg')
         netflix_button = netflix_button.resize((100, 50), Image.ANTIALIAS)
         self.netflix_button = ImageTk.PhotoImage(netflix_button)
+
         play_pause_button = Image.open('buttons/play_pause_button.png')
         play_pause_button = play_pause_button.resize(
             (100, 100), Image.ANTIALIAS)
         self.play_pause_button = ImageTk.PhotoImage(play_pause_button)
+
+        self.left_button = ImageTk.PhotoImage(
+            Image.open('buttons/left_button.png'))
+
+        self.right_button = ImageTk.PhotoImage(
+            Image.open('buttons/right_button.png'))
+
+        self.up_button = ImageTk.PhotoImage(
+            Image.open('buttons/up_button.png'))
+
+        self.down_button = ImageTk.PhotoImage(
+            Image.open('buttons/down_button.png'))
+
 
         # create buttons
         self.HOME = Button(self)
