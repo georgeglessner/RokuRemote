@@ -3,27 +3,12 @@
 ''' Roku remote application '''
 
 from Tkinter import *
-from ip_addresses import upstairs
-from ip_addresses import downstairs
 from roku import Roku
 from PIL import ImageTk
 from PIL import Image
 
-# get location of roku
-while True:
-
-    location = raw_input('Upstairs/Downostairs? [u/d]: ')
-
-    # upstairs roku
-    if location == 'u':
-        roku = Roku(upstairs)
-        break
-    # downstairs roku
-    if location == 'd':
-        roku = Roku(downstairs)
-        break
-    print 'Invalid input.'
-
+# place the Roku's IP address here
+roku = Roku('192.168.1.1')
 
 class Application(Frame):
 
